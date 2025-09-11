@@ -1,0 +1,165 @@
+Version 4 :
+
+Context: 
+You are an AI Agent and act as a Test Manager to convert the selenium code to playwright Typescript for Leaftabs application
+We want ONLY Latest Playwright libraries to implement and supported all browsers
+
+Instructions:
+
+Implementation guidelines:
+
+Playwright version: Latest (stable as of 2025)
+
+Browser: Any compatible browser (headless)
+
+Browser Support: Playwright supports all major browsers — Chromium, Firefox, WebKit
+
+Locators Priority: id (non-numeric) > name > class > text > xpath
+
+Comments: Each method/block has detailed comments
+
+Examples:
+
+Input Selenium Code :
+
+
+package LeafTapsCreateLead;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class CreateLead {
+	
+	public static void main(String[] args) {
+		
+		
+		// Step 0) Setup the chromedriver using webdrivermanager software
+		WebDriverManager.chromedriver().setup();
+		
+
+		// Step 1) Launch the chrome browser (Class Name -> ChromeDriver)
+		ChromeDriver driver = new ChromeDriver();
+		
+		// Step 2) Load the URL (http://leaftaps.com/opentaps/control/main) -> get
+		driver.get("http://leaftaps.com/opentaps");
+		
+
+
+		// Step 3) Maximize the chrome browser
+		driver.manage().window().maximize();
+		
+		// Step 4) Find the username and type the value (DemoSalesManager)
+		driver.findElement(By.id("username")).sendKeys("DemoSalesManager");
+		
+		// Step 5) Find the password and type the value (crmsfa)
+		driver.findElement(By.id("password")).sendKeys("crmsfa");	
+		
+		// Step 6) Find the login button and click
+		driver.findElement(By.className("decorativeSubmit")).click();
+		
+		// Step 7) Verify the title 
+		String title = driver.getTitle();
+		System.out.println(title);
+		
+		// Step 8) Click CRM/SFA link
+		driver.findElement(By.linkText("CRM/SFA")).click();
+		
+		// Step 9) Click Create Lead Link
+		driver.findElement(By.linkText("Create Lead")).click();
+		
+		// Step 10) Find the company name and type the company name
+		driver.findElement(By.id("createLeadForm_companyName")).sendKeys("TestLeaf");
+		
+		// Step 11) Find the first name and type your name
+		driver.findElement(By.id("createLeadForm_firstName")).sendKeys("Babu");
+
+		// Step 12) Find the last name and type your name
+		driver.findElement(By.id("createLeadForm_lastName")).sendKeys("Manickam");
+		
+		// Step 12 b) Select the Source dropdown with one of the visible text
+		WebElement source = driver.findElement(By.id("createLeadForm_dataSourceId"));
+		Select dd1 = new Select(source);
+		dd1.selectByVisibleText("Employee");
+		
+		// Step 12 c) Select the marketing campaign with one of the value
+		WebElement marketing = driver.findElement(By.id("createLeadForm_marketingCampaignId"));
+		Select dd2 = new Select(marketing);
+		dd2.selectByValue("9001");
+
+		// Step 13) Click Create Lead Button
+		driver.findElement(By.name("submitButton")).click();
+		
+		// Step 14) Print the new title
+		title = driver.getTitle();
+		System.out.println(title);
+		
+		
+	}
+
+}
+
+Version 4 Prompt Results;
+import { test, expect, chromium } from '@playwright/test';
+
+test('Create Lead in Leaftaps Application', async () => {
+
+  // Launch the browser in headless mode
+  const browser = await chromium.launch({ headless: true });
+
+  // Create a new browser context and page
+  const context = await browser.newContext();
+  const page = await context.newPage();
+
+  // Step 1: Load the application URL
+  await page.goto('http://leaftaps.com/opentaps/control/main');
+
+  // Step 2: Maximize window - Not required in headless mode, but retained as logical flow
+  // (Playwright auto-manages viewport in headless)
+
+  // Step 3: Enter the username
+  await page.locator('#username').fill('DemoSalesManager');
+
+  // Step 4: Enter the password
+  await page.locator('#password').fill('crmsfa');
+
+  // Step 5: Click on Login button
+  await page.locator('.decorativeSubmit').click();
+
+  // Step 6: Print and verify the page title
+  const homeTitle = await page.title();
+  console.log('Home Page Title:', homeTitle);
+
+  // Step 7: Click on 'CRM/SFA' link
+  await page.locator('text=CRM/SFA').click();
+
+  // Step 8: Click on 'Create Lead' link
+  await page.locator('text=Create Lead').click();
+
+  // Step 9: Enter Company Name
+  await page.locator('#createLeadForm_companyName').fill('TestLeaf');
+
+  // Step 10: Enter First Name
+  await page.locator('#createLeadForm_firstName').fill('Babu');
+
+  // Step 11: Enter Last Name
+  await page.locator('#createLeadForm_lastName').fill('Manickam');
+
+  // Step 12: Select 'Source' dropdown by visible text 'Employee'
+  await page.locator('#createLeadForm_dataSourceId').selectOption({ label: 'Employee' });
+
+  // Step 13: Select 'Marketing Campaign' dropdown by value '9001'
+  await page.locator('#createLeadForm_marketingCampaignId').selectOption({ value: '9001' });
+
+  // Step 14: Click on 'Create Lead' button
+  await page.locator('[name="submitButton"]').click();
+
+  // Step 15: Print the resulting page title
+  const finalTitle = await page.title();
+  console.log('Create Lead Result Page Title:', finalTitle);
+
+  // Cleanup: Close browser
+  await browser.close();
+});
