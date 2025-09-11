@@ -1,0 +1,51 @@
+Input : Small changes in prompt as Table format and top_p parameter used.
+
+{
+  "model": "meta-llama/llama-4-maverick-17b-128e-instruct",
+  //"temperature": 0.7,
+  "top_p":0.95,
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI Agent and act as a Test Manager to generate test data for credit card applications for different types of cards and conditions. Generate test data in table format which includes realistic details like: Card type, Limit, Offers & benefits, Redeem points, Cardholder name, Validity, Payment cycle, Billing Address, Card Status."
+    },
+    {
+      "role": "user",
+      "content": "Generate 5 rows of test credit card data with the following rules:\n\n- Card Number: 12-digit, unique\n- Card Type Variants: Silver, Gold, Platinum (dynamically chosen)\n- Validity: Random future dates up to 5 years\n- Usage Types: Domestic / International\n- Daily Limit Breach: Flagged as \"Yes\" for Platinum or any card over ₹1,00,000"
+    }
+  ]
+}
+
+Output:
+{
+    "id": "chatcmpl-bb0abffd-b9bb-4ac0-b683-c0dcef9dc3da",
+    "object": "chat.completion",
+    "created": 1757612532,
+    "model": "meta-llama/llama-4-maverick-17b-128e-instruct",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Here's a sample table with 5 rows of test credit card data generated based on the given rules:\n\n| **Card Number** | **Card Type** | **Limit** | **Offers & Benefits** | **Redeem Points** | **Cardholder Name** | **Validity** | **Usage Type** | **Payment Cycle** | **Billing Address** | **Card Status** | **Daily Limit Breach** |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n| 123456789012 | Gold | ₹80,000 | Cashback on groceries | 500 | Rohan Sharma | 2027-03-15 | Domestic | Monthly | Flat 101, Delhi | Active | No |\n| 234567890123 | Platinum | ₹2,00,000 | Airport lounge access, 5% cashback | 2000 | Priya Patel | 2026-08-20 | International | Quarterly | B-202, Mumbai | Active | Yes |\n| 345678901234 | Silver | ₹40,000 | 1% cashback on all purchases | 200 | Kunal Verma | 2028-01-10 | Domestic | Monthly | House No. 34, Bangalore | Active | No |\n| 456789012345 | Gold | ₹1,20,000 | 2% cashback on dining | 800 | Aarav Jain | 2025-05-25 | International | Half-yearly | E-101, Hyderabad | Active | Yes |\n| 567890123456 | Platinum | ₹5,00,000 | Personalized concierge service, 10% cashback on fuel | 5000 | Nisha Reddy | 2029-11-30 | International | Yearly | Plot No. 12, Chennai | Active | Yes |\n\nHere's a brief explanation for the generated data:\n- **Card Number**: Unique 12-digit numbers are generated for each card.\n- **Card Type**: Variants like Silver, Gold, and Platinum are chosen dynamically.\n- **Validity**: Random future dates are generated within the next 5 years.\n- **Daily Limit Breach**: Flagged as \"Yes\" for Platinum cards or cards with a limit over ₹1,00,000.\n\nThis test data can be used to validate various scenarios in a credit card application, such as transaction processing, limit checks, and rewards redemption."
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "queue_time": 0.048634093,
+        "prompt_tokens": 163,
+        "prompt_time": 0.002980547,
+        "completion_tokens": 502,
+        "completion_time": 0.848480799,
+        "total_tokens": 665,
+        "total_time": 0.851461346
+    },
+    "usage_breakdown": null,
+    "system_fingerprint": "fp_c527aa4474",
+    "x_groq": {
+        "id": "req_01k4wxxr46ex38b1a8hnxavghv"
+    },
+    "service_tier": "on_demand"
+}

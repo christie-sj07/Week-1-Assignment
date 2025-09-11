@@ -1,0 +1,54 @@
+Prompt :
+
+convert this prompt to valid json format to trigger LLM API Context: You are an AI Agent and act as a Test Manager to Generate test data for credit card applications for different types of cards and conditions We want test data in any format which Includes realistic details like: Card type Limit Offers & benefits Redeem points Cardholder name Validity Payment cycle Billing Address Card Status Instructions: Generates 5 rows of test credit card data. Card Number: 12-digit, unique Card Type Variants: Silver, Gold, Platinum Dynamic Validity: Random future dates up to 5 years Usage Types: Domestic / International Daily Limit Breach: Flagged as "Yes" for Platinum or any card over ₹1L
+
+Input :
+{
+  "model": "meta-llama/llama-4-maverick-17b-128e-instruct",
+  "temperature": 0.7,
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are an AI Agent and act as a Test Manager to generate test data for credit card applications for different types of cards and conditions. Generate test data in any format which includes realistic details like: Card type, Limit, Offers & benefits, Redeem points, Cardholder name, Validity, Payment cycle, Billing Address, Card Status."
+    },
+    {
+      "role": "user",
+      "content": "Generate 5 rows of test credit card data with the following rules:\n\n- Card Number: 12-digit, unique\n- Card Type Variants: Silver, Gold, Platinum (dynamically chosen)\n- Validity: Random future dates up to 5 years\n- Usage Types: Domestic / International\n- Daily Limit Breach: Flagged as \"Yes\" for Platinum or any card over ₹1,00,000"
+    }
+  ]
+}
+
+
+Output:
+{
+    "id": "chatcmpl-a8e119fb-3cba-4c69-97c7-3e2833bd3f43",
+    "object": "chat.completion",
+    "created": 1757612393,
+    "model": "meta-llama/llama-4-maverick-17b-128e-instruct",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Here's a sample test data for 5 credit card applications:\n\n```csv\n\"Card Number\",\"Card Type\",\"Cardholder Name\",\"Limit\",\"Offers & Benefits\",\"Redeem Points\",\"Validity\",\"Payment Cycle\",\"Billing Address\",\"Card Status\",\"Usage Type\",\"Daily Limit Breach\"\n\"123456789012\",\"Gold\",\"Rohan Sharma\",50000,\"2% cashback on groceries, 1% on fuel\",\"1000\",\"2027-03-15\",\"Monthly\",\"House No. 12, Sector 15, Noida\",\"Active\",\"Domestic\",\"No\"\n\"234567890123\",\"Platinum\",\"Aarav Jain\",150000,\"5% cashback on dining, airport lounge access\",\"5000\",\"2026-08-20\",\"Monthly\",\"Flat No. 101, Ansal Apartment, Delhi\",\"Active\",\"International\",\"Yes\"\n\"345678901234\",\"Silver\",\"Saanvi Rao\",20000,\"1% cashback on all transactions\",\"500\",\"2028-01-10\",\"Bi-Monthly\",\"House No. 23, MG Road, Bangalore\",\"Active\",\"Domestic\",\"No\"\n\"456789012345\",\"Gold\",\"Kavita Reddy\",80000,\"2% cashback on groceries, 1% on fuel\",\"2000\",\"2027-05-25\",\"Monthly\",\"Flat No. 45, Kaveri Apartment, Hyderabad\",\"Inactive\",\"International\",\"No\"\n\"567890123456\",\"Platinum\",\"Aryan Saxena\",200000,\"5% cashback on dining, airport lounge access\",\"10000\",\"2026-02-28\",\"Quarterly\",\"House No. 56, Sector 12, Gurgaon\",\"Active\",\"International\",\"Yes\"\n```\n\nHere's a brief explanation for the generated data:\n\n1. **Card Number**: 12-digit unique numbers are generated.\n2. **Card Type**: Randomly chosen from Silver, Gold, and Platinum.\n3. **Cardholder Name**: Random Indian names are generated.\n4. **Limit**: Varies between ₹20,000 and ₹2,00,000.\n5. **Offers & Benefits**: Based on the card type, different offers and benefits are assigned.\n6. **Redeem Points**: Assigned based on the card type and limit.\n7. **Validity**: Random future dates are generated up to 5 years from now.\n8. **Payment Cycle**: Randomly chosen from Monthly, Bi-Monthly, and Quarterly.\n9. **Billing Address**: Random Indian addresses are generated.\n10. **Card Status**: Randomly chosen from Active and Inactive.\n11. **Usage Type**: Randomly chosen from Domestic and International.\n12. **Daily Limit Breach**: Flagged as \"Yes\" for Platinum cards or cards with a limit over ₹1,00,000.\n\nThis test data should be sufficient for testing various credit card application scenarios."
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "queue_time": 0.047490513,
+        "prompt_tokens": 163,
+        "prompt_time": 0.003004157,
+        "completion_tokens": 582,
+        "completion_time": 1.008945781,
+        "total_tokens": 745,
+        "total_time": 1.011949938
+    },
+    "usage_breakdown": null,
+    "system_fingerprint": "fp_c527aa4474",
+    "x_groq": {
+        "id": "req_01k4wxsfp9ephtx54sea5ma1mr"
+    },
+    "service_tier": "on_demand"
+}
