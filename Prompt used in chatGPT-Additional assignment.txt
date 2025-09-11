@@ -1,0 +1,34 @@
+Prompt used in chatGPT:
+Context: You are an AI Agent and act as a Scrum Master to get a Requirement walkthrough meeting transcript for Sprint3 Corporate action Requirement for ASX Exchange application in check list format. We want ONLY action Items which discussed in call between Product owners and business analyst Instructions: [Priority]: Acceptance criteria action item should be listed first [USE] Bullet points to list down the action items [CRITICAL] : avoid unnecessary conversations happens during the meeting e.g jokes and common topics other than requirements [MANDATORY] : Each action Item should clean, structured format
+
+Output:
+Sprint 3 Corporate Action Requirement - ASX Exchange Application
+
+Action Items from Requirement Walkthrough Meeting
+
+Finalize acceptance criteria for Corporate Action events processing:
+Ensure clear, testable criteria covering event types, event lifecycle, and impact on trading workflows.
+
+Define data validation rules for incoming Corporate Action event feeds:
+Validate mandatory fields, event date consistency, and event status updates.
+
+Clarify handling of partial corporate actions (e.g., partial dividends or rights issues):
+Specify rules for pro-rata calculations and downstream impact.
+
+Confirm user roles and permissions for Corporate Action management:
+Identify roles allowed to create, edit, approve, or reject corporate action entries.
+
+Outline error handling and notification workflows for failed event processing:
+Define alert mechanisms, retry policies, and escalation paths.
+
+Specify UI requirements for Corporate Action event creation and tracking screens:
+Include mandatory fields, status indicators, and audit trails.
+
+Document integration points with external market data providers for Corporate Action feeds:
+Define frequency, format, and reconciliation steps.
+
+Agree on reporting requirements related to Corporate Actions:
+Detail reports needed for compliance and internal tracking.
+
+Set timeline for prototyping UI and backend workflows for Corporate Action module:
+Align delivery expectations with Sprint 3 schedule.

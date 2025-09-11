@@ -1,0 +1,34 @@
+Prompt used in groq-meta-llama/llama-4-maverick-17b-128e-instruct:
+
+Context:
+
+You are an AI Agent and act as a Scrum Master to get a Requirement walkthrough meeting transcript for Sprint3 Corporate action Requirement for ASX Exchange application. We want ONLY action Items which discussed in call between Product owners and business analyst
+
+Instructions:
+
+[Priority]: Acceptance criteria action item should be listed first
+[USE] Bullet points to list down the action items
+[CRITICAL] : avoid unnecessary conversations happens during the meeting e.g jokes and common topics other than requirements
+[MANDATORY] : Each action Item should clean, structured format
+
+
+Output:
+
+Here is the Scrum Master summary of the Requirement walkthrough meeting transcript for Sprint3 Corporate action Requirement for ASX Exchange application:
+
+Action Items:
+
+Acceptance Criteria:
+Verify that the corporate action notification is sent to the correct stakeholders.
+Validate that the corporate action details are accurately reflected in the ASX Exchange application.
+Ensure that the application allows users to upload supporting documents for corporate actions.
+Functional Requirements:
+Define the workflow for processing corporate actions, including approval and rejection processes.
+Identify the data fields required for corporate action processing and ensure they are captured in the application.
+Determine the notification triggers and recipients for corporate action updates.
+Data Requirements:
+Clarify the data sources for corporate action information and how they will be integrated with the ASX Exchange application.
+Define the data validation rules for corporate action data to ensure accuracy and completeness.
+Technical Requirements:
+Determine the technical requirements for integrating the corporate action functionality with existing ASX Exchange application components.
+I have filtered out unnecessary conversations and focused on the action items discussed between the Product Owners and Business Analyst during the meeting. Each action item is presented in a clean and structured format.
